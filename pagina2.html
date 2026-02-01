@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Playlists</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f2e6c9;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .content {
+      width: 90vw;
+      max-width: 900px;
+      padding: 20px;
+    }
+
+    /* Abas */
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .tab {
+      padding: 8px 14px;
+      border: 2px solid black;
+      background-color: #f2e6c9;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .tab.active {
+      background-color: black;
+      color: white;
+    }
+
+    /* Player */
+    .playlist-box {
+      border: 3px solid black;
+      padding: 10px;
+      background-color: #f2e6c9;
+    }
+
+    .playlist-box iframe {
+      width: 100%;
+      height: 352px;
+      border-radius: 12px;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      .playlist-box iframe {
+        height: 480px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+
+    <!-- ABAS -->
+    <div class="tabs">
+      <button class="tab active" onclick="trocarPlaylist('3vpqWUT1VD7SmzUUaQoHOm', this)">
+        Playlist 1
+      </button>
+
+      <button class="tab" onclick="trocarPlaylist('52VidpGry5SM54ZvGojPBy', this)">
+        Playlist 2
+      </button>
+
+      <button class="tab" onclick="trocarPlaylist('7yr9feTJOvstfooqUCRsGt', this)">
+        Playlist 3
+      </button>
+    </div>
+
+    <!-- PLAYER -->
+    <div class="playlist-box">
+      <iframe
+        id="spotifyPlayer"
+        src="https://open.spotify.com/embed/playlist/3vpqWUT1VD7SmzUUaQoHOm"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    </div>
+
+  </div>
+
+  <script>
+    function trocarPlaylist(id, botao) {
+      const player = document.getElementById("spotifyPlayer");
+      player.src = "https://open.spotify.com/embed/playlist/" + id;
+
+      document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.remove("active");
+      });
+
+      botao.classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
